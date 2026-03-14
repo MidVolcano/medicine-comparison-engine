@@ -1,6 +1,6 @@
 # **AI Clinical Comparison Engine**
 
-Mini full stack application that takes in an iput containing conflicting redical records from healthcare systems and using ChatGPT's API, compares them and provides actual clinical reasoning.
+Mini full stack application that takes in an input containing conflicting redical records from healthcare systems and using ChatGPT's API, compares them and provides actual clinical reasoning.
 
 This project was made as part of the interview process for a Full Stack Developer - EHR Integration Intern. The system takes in multiple medical records and finds which is the best option, assigns a confidence score, and produces "clinical reasoning for reconciliation decisions" that "Detect implausible data (e.g., impossible vital signs, drug-disease mismatches)".
 
