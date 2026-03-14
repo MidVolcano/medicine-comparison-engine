@@ -18,7 +18,7 @@ This project was made as part of the interview process for a Full Stack Develope
 - OPENAI's API
 
 ## **How It Looks Before & After**
-
+### **https://sites.google.com/arizona.edu/medical-reconciliation/home?authuser=8**
 
 ## **Optimizations**
 - The source code is body readable and easily understood since most of the java code should be understood by anyone proficient in java.
