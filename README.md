@@ -17,6 +17,9 @@ This project was made as part of the interview process for a Full Stack Develope
 - REST
 - OPENAI's API
 
+## **How It Looks Before & After**
+
+
 ## **Optimizations**
 - The source code is body readable and easily understood since most of the java code should be understood by anyone proficient in java.
 - Handles API limits by stopping the program early if it exceeds current funds in my OPENAI account and if there is an API error, it is printed to console.
