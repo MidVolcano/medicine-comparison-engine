@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Medication Reconciliation Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+.container{
+  display:flex;
+  gap:40px;
+  align-items:flex-start;
+}
+
+.left{
+  width:400px;
+}
+
+.right{
+  width:300px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Medication Reconciliation Dashboard</h1>
+
+<div class="container">
+
+<div class="left">
+
+<p>Medication: <span id="medication">Loading...</span></p>
+<p>Confidence: <span id="confidence">Loading...</span></p>
+
+<p>AI Reasoning:</p>
+<p id="reasoning">Loading...</p>
+
+<p>Data Quality Score: <span style="color:green">95</span></p>
+
+<button>Approve</button>
+<button>Reject</button>
+
+</div>
+
+<div class="right">
+
+<canvas id="confidenceChart"></canvas>
+
+</div>
+
+</div>
+
+<script>
+
+async function loadData(){
+
+const response = await fetch("/api/reconcile/medication",{
+method:"POST",
+headers:{
+"Content-Type":"application/json",
+"x-api-key":"mateom-secret"
+},
+body: JSON.stringify({
+sources:[
+{
+system:"Pharmacy",
+medication:"Metformin 500mg twice daily",
+lastUpdated:"2026-03-01",
+sourceReliability:"high"
+}
+],
+patientContext:{
+conditions:["Type 2 Diabetes"],
+recentLabs:{
+eGFR:45
+}
+}
+})
+})
+
+const data = await response.json()
+
+document.getElementById("medication").innerText =
+data.reconciledMedication
+
+document.getElementById("confidence").innerText =
+Math.round(data.confidenceScore*100)+"%"
+
+document.getElementById("reasoning").innerText =
+data.reasoning
+
+const confidence = data.confidenceScore
+const remaining = 1 - confidence
+
+new Chart(document.getElementById("confidenceChart"),{
+type:"pie",
+data:{
+labels:["Confidence","Uncertainty"],
+datasets:[{
+data:[confidence,remaining],
+backgroundColor:["green","lightgray"]
+}]
+}
+})
+
+}
+
+loadData()
+
+</script>
+
+</body>
+</html>
