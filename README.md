@@ -155,17 +155,19 @@ The application exposes two endpoints:
 - `POST /api/reconcile/medication`
 - `POST /api/validate/data-quality`
 
-### Deterministic Reconciliation Logic
+### Reconciliation Logic
 The medication reconciliation decision is made using a **scoring system** based on:
 - source reliability
 - recency of the record
 I allocated 10 total points and of that 6 of them were allocated to the reliability, where High : 6, Medium : 4, Low : 2, None: 0. The recency was also made up the years since admission so 2026 : 4, 2025 : 3, 2024 : 2, and anything older as 0. 
 
-This ensures the system produces predictable results and also helped avoid completely relying on the AI's decision for reasoning.
+This makes sure that the system creates predictable results and also helped avoid completely relying on the AI's decision for reasoning.
 
 ### AI Integration for Reasoning
 The **OpenAI API** is used only create a string containing the reasoning behind the outcome my data produced, with there being infinite inputs, having the AI generate an easy to read response was both a smart and no brainer decision.
 
+### Time Spent
+This project took me around 15 hours split among 3 days
 
 ### Frontend Dashboard
 A simple **HTML + JavaScript** front end was chosen 
